@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Very wow....</title>
+	<script src="javascript.js"></script>
+	<script type="text/javascript" language="Javascript" 
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+	</script>
+
+</head>
+	<body>
+
+		<canvas id="canvas"></canvas>	
+
+	</body>
+
+
+<script type="text/javascript">
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+</script>
+
+
+		<script>
+
+	    $(function () {
+
+    var cvs = $("canvas"),
+        cvsWidth = cvs.width(),
+        cvsHeight = cvs.height(),
+        ctx = cvs[0].getContext("2d"),
+        top = $("#top"),
+        bottom = $("#bottom");
+
+    function writeCaption(text, y) {
+        var size = 150;
+
+        do {
+            size--;
+            ctx.font = size + 'px Impact';
+            ctx.lineWidth = size / 32;
+        } while (ctx.measureText(text).width > cvsWidth)
+
+        ctx.fillText(text, cvsWidth / 2, y);
+        ctx.strokeText(text, cvsWidth / 2, y);
+
+    }
+
+    // Setup basic canvas settings
+    $.extend(ctx, {
+        strokeStyle: "#000000",
+        textAlign: 'center',
+        fillStyle: "#ffffff",
+        lineCap: "round"
+    })
+
+    $("<img />")
+        .load(function () {
+
+        var img = this;
+
+        $(document.body).on("keyup", function () {
+            //var topText = top.val(),
+            var topText = getParameterByName('firstword'),
+                bottomText = getParameterByName('NextWord');
+
+            ctx.clearRect(0, 0, cvsWidth, cvsHeight);
+            ctx.drawImage(img, 0, 0);
+            ctx.textBaseline = 'top';
+            writeCaption(topText, 0)
+
+            ctx.textBaseline = 'bottom';
+            writeCaption(bottomText, cvsHeight)
+
+        }).trigger("keyup");
+
+    })
+        .attr("src", "doge.jpg");
+
+});
+
+// Begin Javascript
+
+function myFunction() 
+{
+	window.open("index2.html");
+}
+
+	// Make canvas stretch fullscreen
+(function() {
+    var canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d');
+
+    // resize the canvas to fill browser window dynamically
+    window.addEventListener('resize', resizeCanvas, false);
+
+    function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            /**
+             * Your drawings need to be inside this function otherwise they will be reset when 
+             * you resize the browser window and the canvas goes will be cleared.
+             */
+            drawStuff(); 
+    }
+    resizeCanvas();
+
+    function drawStuff() {
+            // do your drawing stuff here
+    }
+})();
+	
+</script>
+</html>
