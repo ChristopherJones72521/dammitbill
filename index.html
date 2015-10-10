@@ -1,56 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-	<link rel="stylesheet" href="style.css">
+	<!--<link rel="stylesheet" href="style.css">-->
     <meta charset="UTF-8">
-    <title>TechConnect || Doge Meme Generator</title>
+    <title>#DammitBill || Even if you try for 1000 years, Bill Hoag will be better than you</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
     <script type="text/javascript" language="Javascript" 
         src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
 	</script>
     <script src="javascript.js"></script>
     <script src="my_jquery.js"></script>
-
+    <!--<script type="text/javascript" language="json" 
+    	src="http://api.icndb.com/jokes/random/?firstName=Bill&lastName=Hoag">
+    </script>-->
 </head>
+
 <body>
+<script type="text/javascript">
 
-    <h1>Hello TechConnect!</h1>
-    <h2>Here is your doge meme generator. </h2>
-	<p><i>(remember, with great power comes great responsibility)</p>
-
-    <form action='index2.html' method='GET'>
-    	
-	        What would you like Doge to say?<br><br>
-
-	        <input type="text" name="firstword" id="top">
-	        <br>
-	        <br>
-	        What else?<br><br>
-	        <input type="text" name="NextWord" id="bottom">
-	        <br>
-	        <br>
-	        Choose a color for your text<br><br>
-	        <input type="radio" name="color" value="black"> <font color = "#000";>Black</font>
-	       
-	        <input type="radio" name="color" value="white"> <font color = "#FFF";>White</font>
-	        
-	        <input type="radio" name="color" value="red"> <font color = "#FF0000";>Red</font>
-	        <br><br>
-	        <!--<p>Is there anything you would like to say to Doge?</p><br>
-	        <textarea name="message" rows="10" cols="100">Doge, you are the most fashionable pup I've ever seen.</textarea>-->
-	        <br>
-	        <p>
-	        What type of treats would you like to give Doge?
-	    	</p>
-	        <input type="checkbox" name="treat" value="Milkbone"> A Milkbone<br>
-	        <input type="checkbox" name="treat" value="scarf"> A Scarf<br>
-	        <input type="checkbox" name="treat" value="sunglasses"> Sunglasses<br>
-
-	        <br>
-	        <input type="submit"</input>
-
-    	
-	</form>
+$.ajax({
+    url: "http://otter.topsy.com/urlinfo.js?url=http://www.nytimes.com",
+    dataType: 'jsonp',
+    success: function(results){
+        var title = results.response.oneforty;
+        var numTweets = results.response.trackback_total;
+        $('#results').append(title + ' has ' + numTweets + ' tweets.');
+    }
+});
+</script>
 
 </body>
 </html>
